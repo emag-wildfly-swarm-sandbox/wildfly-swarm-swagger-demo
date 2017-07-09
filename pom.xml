@@ -6,7 +6,9 @@
 
   <groupId>wildfly-swarm</groupId>
   <artifactId>wildfly-swarm-swagger-demo</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>2017.6.1</version>
+  <!--<version>2017.7.0-SNAPSHOT</version>-->
+  <packaging>war</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,15 +17,15 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
 
-    <version.wildfly-swarm>1.0.0.CR1</version.wildfly-swarm>
-    <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+    <version.wildfly-swarm>${project.version}</version.wildfly-swarm>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
   </properties>
 
   <repositories>
     <repository>
-      <id>projectodd-snapshots</id>
-      <name>Project:odd Snapshots from CI</name>
-      <url>https://repository-projectodd.forge.cloudbees.com/snapshot</url>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -34,9 +36,9 @@
   </repositories>
   <pluginRepositories>
     <pluginRepository>
-      <id>projectodd-snapshots</id>
-      <name>Project:odd Snapshots from CI</name>
-      <url>https://repository-projectodd.forge.cloudbees.com/snapshot</url>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -50,7 +52,7 @@
     <dependencies>
       <dependency>
         <groupId>org.wildfly.swarm</groupId>
-        <artifactId>bom</artifactId>
+        <artifactId>bom-all</artifactId>
         <version>${version.wildfly-swarm}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -61,7 +63,11 @@
   <dependencies>
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
-      <artifactId>jaxrs-cdi</artifactId>
+      <artifactId>jaxrs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>cdi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
@@ -81,9 +87,6 @@
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
         <version>${version.wildfly-swarm}</version>
-        <configuration>
-          <mainClass>wildfly.swarm.swagger.App</mainClass>
-        </configuration>
         <executions>
           <execution>
             <goals>
