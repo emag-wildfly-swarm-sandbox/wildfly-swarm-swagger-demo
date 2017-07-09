@@ -26,7 +26,7 @@ curl localhost:8080/time/now
 ## Access Swagger.json
 
 ``` console
-curl -s localhost:8080/swagger.json | jq .
+curl localhost:8080/swagger.json
 ```
 
 ### Response
